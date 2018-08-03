@@ -56,11 +56,11 @@ android {
     android.applicationVariants.all { variant ->
         if ("true".equals(IS_JENKINS)) {
             variant.outputs.all {
-                outputFileName = "Jr_v" + "-" + defaultConfig.versionName + "IS_JENKINS-" + variant.productFlavors[0].name + "-" + BUILD_TYPE + ".apk"
+                outputFileName = "Jr_v" + "-" + APP_VERSION_NAME + "IS_JENKINS-" + variant.productFlavors[0].name + "-" + BUILD_TYPE + ".apk"
             }
         } else {
             variant.outputs.all {
-                outputFileName = "Jr_v" + "-" + defaultConfig.versionName + "-"
+                outputFileName = "Jr_v" + "-" + APP_VERSION_NAME + "-"
                 variant.productFlavors[0].name + BUILD_TYPE + ".apk"
             }
         }
