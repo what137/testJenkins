@@ -45,20 +45,30 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
-            //新名字
             def newName
-            //输出文件夹
-            def outDirectory
-            //是否为Jenkins打包，输出路径不同
+            def timeNow
+            def oldFile = output.outputFile
+            def outDirectory = oldFile.parent
+
             if ("true".equals(IS_JENKINS)) {
-                //BUILD_PATH为服务器输出路径
-                newName = "android" + "-" + defaultConfig.versionName + "-" + BUILD_TYPE + ".apk"
+                timeNow = JENKINS_TIME
+                outDirectory = 'D:/bb/apk'
+                newName = 'yj-android-v' +
+                        APP_VERSION_CODE + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
             } else {
-                outDirectory = output.outputFile.getParent()
-                newName = "android" + "-" + defaultConfig.versionName + "-" + BUILD_TYPE + ".apk"
+                timeNow = getDate()
+                if (variant.buildType.name.equals('debug')) {
+                    newName = "yj-android-v${APP_VERSION_CODE}-debug.apk"
+                } else {
+                    newName = 'yj-android-v' +
+                            APP_VERSION_CODE + '-' + variant.productFlavors[0].name + timeNow + '-' + variant.buildType.name + '.apk'
+                }
             }
+
             output.outputFile = new File(outDirectory, newName)
+
         }
+
     }
     flavorDimensions("channel")
     productFlavors {
