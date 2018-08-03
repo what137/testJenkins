@@ -47,6 +47,7 @@ android {
 
     flavorDimensions("channel")
     productFlavors {
+
         market { dimension "channel" }
         xiaomi { dimension "channel" }
         tes { dimension "channel" }
