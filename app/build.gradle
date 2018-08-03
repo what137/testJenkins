@@ -48,20 +48,20 @@ android {
     flavorDimensions("channel")
     productFlavors {
 
-        market { dimension "channel" }
-        xiaomi { dimension "channel" }
-        tes { dimension "channel" }
+        aa { dimension "channel" }
+
     }
 
 
     android.applicationVariants.all { variant ->
         if ("true".equals(IS_JENKINS)) {
             variant.outputs.all {
-                outputFileName = "Jr_v" + "-" + defaultConfig.versionName + "-" + BUILD_TYPE + ".apk"
+                outputFileName = "Jr_v" + "-" + defaultConfig.versionName + "IS_JENKINS-" + variant.productFlavors[0].name + "-" + BUILD_TYPE + ".apk"
             }
         } else {
             variant.outputs.all {
-                outputFileName = "Jr_v" + "-" + defaultConfig.versionName + "-" + BUILD_TYPE + ".apk"
+                outputFileName = "Jr_v" + "-" + defaultConfig.versionName + "-"
+                variant.productFlavors[0].name + BUILD_TYPE + ".apk"
             }
         }
     }
