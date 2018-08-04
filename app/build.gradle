@@ -51,7 +51,7 @@ android {
       
         market { dimension "channel" }
         xiaomi { dimension "channel" }
-        test { dimension "channel" }
+        yingyongbao { dimension "channel" }
 
     }
 
